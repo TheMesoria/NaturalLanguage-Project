@@ -143,7 +143,7 @@ public class MainActivity
 
 	@Override
 	public void onResult(Hypothesis hypothesis) {
-		//((TextView) findViewById(R.id.result_text)).setText("");
+		((TextView) findViewById(R.id.result_text)).setText("");
 		if (hypothesis != null) {
 			String text = hypothesis.getHypstr();
 			makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
@@ -173,6 +173,16 @@ public class MainActivity
 			}
 			else if (text.equals("ZAMKNIJ APLIKACJĘ")) {
 				close_app();
+			}
+			else if (text.equals("WŁĄCZ MUZYKĘ")) {
+				open_music();
+			}
+			else if (text.equals("WŁĄCZ RADIO")) {
+				open_radio();
+			}
+			else
+			if (text.equals("NAPISZ WIADOMOŚĆ") || text.equals("WYŚLIJ WIADOMOŚĆ") || text.equals("POKAŻ WIADOMOŚĆ")) {
+				send_SMS();
 			}
 		}
 	}
@@ -359,7 +369,18 @@ public class MainActivity
 		this.finish();
 		System.exit(0);
 	}
-
+	public void open_music() {
+		Intent intent = new Intent();
+		intent.setAction(android.content.Intent.ACTION_VIEW);
+//		intent.setDataAndType(Uri.parse(YOUR_SONG_PATH), "audio/*");
+		startActivity(intent);
+	}
+	public void open_radio() {
+		// No default radio app
+	}
+	public void send_SMS() {
+		startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", "123456789", null)));
+	}
 	public void open_dictaphone() {
 //        int ACTIVITY_RECORD_SOUND = 0;
 //        Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
