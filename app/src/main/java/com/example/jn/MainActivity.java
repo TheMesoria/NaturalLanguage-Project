@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.AlarmClock;
+import android.provider.ContactsContract;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -166,6 +167,12 @@ public class MainActivity
 			}
 			else if (text.equals("OTWÓRZ KALENDARZ")) {
 				open_calendar();
+			}
+			else if (text.equals("ZADZWOŃ DO")) {
+				open_contact_book();
+			}
+			else if (text.equals("ZAMKNIJ APLIKACJĘ")) {
+				close_app();
 			}
 		}
 	}
@@ -343,6 +350,14 @@ public class MainActivity
 
 		i.setComponent(cn);
 		startActivity(i);
+	}
+	public void open_contact_book() {
+		Intent contactactivity = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+		startActivityForResult(contactactivity, 1);
+	}
+	public void close_app() {
+		this.finish();
+		System.exit(0);
 	}
 
 	public void open_dictaphone() {
