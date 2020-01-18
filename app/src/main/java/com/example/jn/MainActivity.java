@@ -158,6 +158,15 @@ public class MainActivity
 			else if (text.equals("OTWÓRZ KALKULATOR")) {
 				open_calculator();
 			}
+			else if (text.equals("OTWÓRZ KAMERĘ")) {
+				open_camera();
+			}
+			else if (text.equals("OTWÓRZ DYKTOFON")) {
+				open_dictaphone();
+			}
+			else if (text.equals("OTWÓRZ KALENDARZ")) {
+				open_calendar();
+			}
 		}
 	}
 
@@ -285,8 +294,8 @@ public class MainActivity
 
 	public void open_calculator() {
 
-		final String CALCULATOR_PACKAGE ="com.android.calculator2";
-		final String CALCULATOR_CLASS ="com.android.calculator2.Calculator";
+		final String CALCULATOR_PACKAGE = "com.android.calculator2";
+		final String CALCULATOR_CLASS   = "com.android.calculator2.Calculator";
 
 		Intent intent = new Intent();
 
@@ -322,16 +331,24 @@ public class MainActivity
 
 	}
 
-	public void open_Camera() {
+	public void open_camera() {
 		Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
 		startActivity(intent);
 	}
+	public void open_calendar() {
+		Intent i = new Intent();
 
-    /*public void open_dictaphone()
-    {
-        int ACTIVITY_RECORD_SOUND = 0;
-        Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
-        startActivityForResult(intent, ACTIVITY_RECORD_SOUND);
-    }*/
+		ComponentName cn = new ComponentName("com.google.android.calendar", "com.android.calendar.LaunchActivity");
+//		cn = new ComponentName("com.android.calendar", "com.android.calendar.LaunchActivity");
+
+		i.setComponent(cn);
+		startActivity(i);
+	}
+
+	public void open_dictaphone() {
+//        int ACTIVITY_RECORD_SOUND = 0;
+//        Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
+//        startActivityForResult(intent, ACTIVITY_RECORD_SOUND);
+	}
 
 }
